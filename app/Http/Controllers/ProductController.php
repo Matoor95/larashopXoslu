@@ -19,9 +19,17 @@ class ProductController extends Controller
         // ];
         // dd signifie dump and die 
         // dd($products);
-        $products=Product::all();
+        // si on veut afficher la categorie du produit on ajoute un with('category')
+        $products=Product::with('category')->get();
+                //
+                
+                dd($products);
+
+        $stocks=Product::inStock()->latest()->get();
+        $outStocks=Product::outStock()->latest()->get();
+        // dd($stocks);
 
 
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products','stocks','outStocks'));
     }
 }

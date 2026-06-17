@@ -15,6 +15,23 @@
     </div>
         
     @endforeach
+    <h3>les produits en stock</h3>
+    @foreach ($stocks as  $stock)
+        <div>
+            <p>{{ $stock['libelle'] }} avec une quantite de {{ $stock['quantity'] }}</p>
+        </div>
+        
+    @endforeach
+     <h3>les produits en rupture de  stock</h3>
+    @foreach ($outStocks as  $outStock)
+        <div>
+            <p>{{ $outStock['libelle'] }} avec une quantite de {{ $outStock['quantity'] }}</p>
+        </div>
+        
+    @endforeach
+    
+    
+
 
 </body>
 </html>
