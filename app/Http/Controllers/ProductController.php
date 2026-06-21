@@ -20,10 +20,11 @@ class ProductController extends Controller
         // dd signifie dump and die 
         // dd($products);
         // si on veut afficher la categorie du produit on ajoute un with('category')
-        $products=Product::with('category')->get();
-                //
+        // with est la methode eloquend qui declenche l'egear loading: quand tu va cherhcer mes produits aussi leurs cateogires en meme temps dans une requete separee mais immediate 
+        $products=Product::with('category')->get();  
+                      //
                 
-                dd($products);
+                // dd($products);
 
         $stocks=Product::inStock()->latest()->get();
         $outStocks=Product::outStock()->latest()->get();

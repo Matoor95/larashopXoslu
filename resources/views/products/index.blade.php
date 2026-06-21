@@ -9,7 +9,7 @@
     <h1>Nos produits chez LaraShop</h1>
     @foreach ($products as $product )
     <div>
-        <h2>{{ $product['libelle'] }} </h2>
+        <h2>{{ $product->libelle }} :  {{ $product->category->name }} </h2>
         <p>{{ $product['price'] }} Euro quantite restante {{ $product['quantity'] }}</p>
         <p>{{ $product['description'] }}</p>
     </div>

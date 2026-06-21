@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasFactory;
     //
-    protected $fillable=['libelle','price','quantity','description'];
+    protected $fillable=['libelle','price','quantity','description','category_id'];
 // un produit appartient a une seule categorie
     public function category(){
         return $this->belongsTo(Category::class);
