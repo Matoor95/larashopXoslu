@@ -1,37 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaraShop</title>
-</head>
-<body>
-    <h1>Nos produits chez LaraShop</h1>
-    @foreach ($products as $product )
-    <div>
-        <h2>{{ $product->libelle }} :  {{ $product->category->name }} </h2>
-        <p>{{ $product['price'] }} Euro quantite restante {{ $product['quantity'] }}</p>
-        <p>{{ $product['description'] }}</p>
+@extends('layouts.app')
+@section('title', 'Produits')
+@section('content')
+    <div class="mb-6 flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900">
+                Produits
+            </h1>
+            <p class="text-sm text-slate-500">Gestion du catalogue de LaraShop</p>
+
+        </div>
+
     </div>
-        
-    @endforeach
-    <h3>les produits en stock</h3>
-    @foreach ($stocks as  $stock)
-        <div>
-            <p>{{ $stock['libelle'] }} avec une quantite de {{ $stock['quantity'] }}</p>
-        </div>
-        
-    @endforeach
-     <h3>les produits en rupture de  stock</h3>
-    @foreach ($outStocks as  $outStock)
-        <div>
-            <p>{{ $outStock['libelle'] }} avec une quantite de {{ $outStock['quantity'] }}</p>
-        </div>
-        
-    @endforeach
-    
-    
+    <div class="overflow-hidden  rounded-xl bg-white shadow">
+        <table class="min-w-full divide-y divide-slate-200">
+            <thead class="bg-slate-950 text-white">
+                <tr>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Image</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Produit</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Catégorie</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Prix</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Stock</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Actions</th>
+                </tr>
+            </thead>
 
+            <tbody class="divide-y divide-slate-100">
+                @forelse ($products as $product )
+                <tr class="hover:bg-slate-50">
+                    <td class="px-4 py-3">
+                        @if ($product->image)
+                        <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->libelle }}" class="h-14 w-14 rounded-lg object-cover">
+                        @else
+                        <div class="h-14 w-14 rounded-lg bg-slate-200">
 
-</body>
-</html>
+                        </div>
+                            
+                        @endif
+
+                    </td>
+                    <td class="px-4 py-3">
+                        <div class="font-semibold  text-slate-900">
+                            {{ $product->libelle }}
+
+                        </div>
+
+                    </td>
+
+                </tr>
+                    
+                @empty
+                    
+                @endforelse
+
+            </tbody>
+
+        </table>
+
+    </div>
+@endsection
